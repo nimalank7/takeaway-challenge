@@ -22,4 +22,14 @@ describe Takeaway do
     takeaway_1.place_order("Chips", 2)
     expect(takeaway_1.ordered_dishes).to eq [dish_1, dish_1]
   end
+  it "initializes total to 0" do
+    expect(takeaway.total).to eq 0
+  end
+  it "gives 200 for total chips" do
+    allow(menu_c).to receive(:new) {menu}
+    allow(menu).to receive(:dishes) {[dish_1]}
+    takeaway_1 = Takeaway.new(menu_c)
+    takeaway_1.place_order("Chips", 2)
+    expect(takeaway_1.total).to eq 200
+  end
 end
